@@ -20,8 +20,6 @@
 // to zwraca zawsze tablice
 // const titles = document.querySelectorAll('h1');
 
-
-
 // dodawanie elementów
 
 // const list = document.querySelector('#list');
@@ -36,7 +34,6 @@
 
 // console.log(list.innerHTML)
 
-
 // modyfikacja
 
 // const listItems = document.querySelectorAll('#list li')
@@ -44,41 +41,38 @@
 // console.log(listItems);
 
 // listItems.forEach(item => {
-  // console.log(item);
-  // item.classList.add('completed')
-  // item.classList.remove('completed')
-  // item.classList.toggle('completed')
+// console.log(item);
+// item.classList.add('completed')
+// item.classList.remove('completed')
+// item.classList.toggle('completed')
 
-  // item.style.textDecoration = 'line-through';
+// item.style.textDecoration = 'line-through';
 // })
-
 
 // nullish operator
 // const todos = JSON.parse(localStorage.getItem('todos')) ?? [];
-let todos = JSON.parse(localStorage.getItem('todos'));
+let todos = JSON.parse(localStorage.getItem("todos"));
 
-if(todos === null) {
+if (todos === null) {
   todos = [];
 }
 
+const form = document.querySelector("#todo-form");
+const draftButton = document.querySelector("#draftButton");
+const list = document.querySelector("#list");
+const input = document.querySelector("#todo-input");
 
-const form = document.querySelector('#todo-form');
-const draftButton = document.querySelector('#draftButton');
-const list = document.querySelector('#list');
-const input = document.querySelector('#todo-input')
+input.value = localStorage.getItem("draft");
 
-input.value = localStorage.getItem('draft')
-
-todos.forEach(todo => {
-  list.innerHTML += `<li ${todo.isChecked ? 'class="completed"' : '' }>
-  <input type="checkbox" ${todo.isChecked ? 'checked' : ''}>
+todos.forEach((todo) => {
+  list.innerHTML += `<li ${todo.isChecked ? 'class="completed"' : ""}>
+  <input type="checkbox" ${todo.isChecked ? "checked" : ""}>
   ${todo.name}
   <button type="button"> X </button>
-  </li>`
-})
+  </li>`;
+});
 
-
-form.addEventListener('submit', (event) => {
+form.addEventListener("submit", (event) => {
   event.preventDefault();
 
   // dodawanie elementu listy
@@ -88,40 +82,39 @@ form.addEventListener('submit', (event) => {
     <button type="button"> X </button>
   </li>`;
 
-  localStorage.setItem('todos', JSON.stringify([
-    ...todos,
-    {
-      name: input.value,
-      checked: false
-    }
-  ]));
-
+  localStorage.setItem(
+    "todos",
+    JSON.stringify([
+      ...todos,
+      {
+        name: input.value,
+        checked: false,
+      },
+    ])
+  );
 
   // czyszczenie pola formularza
   input.value = "";
-})
+});
 
-list.addEventListener('click', event => {
-  if(event.target.tagName === 'INPUT') {
+list.addEventListener("click", (event) => {
+  if (event.target.tagName === "INPUT") {
     // console.log(event.target); // konkretny klikniety checkbox
-    const selectedInput = event.target
+    const selectedInput = event.target;
 
     // na jego rodzicu (czyli li) manipuluje klasa completed, ktora w CSS zmienia styl wyswietlenia
-    selectedInput.parentElement.classList.toggle('completed');
+    selectedInput.parentElement.classList.toggle("completed");
   }
 
-  if(event.target.tagName === 'BUTTON') {
-    const selectedButton = event.target
-    selectedButton.parentElement.remove()
+  if (event.target.tagName === "BUTTON") {
+    const selectedButton = event.target;
+    selectedButton.parentElement.remove();
   }
-})
+});
 
-
-draftButton.addEventListener('click', () => {
-  localStorage.setItem('draft', input.value);
-})
-
-
+draftButton.addEventListener("click", () => {
+  localStorage.setItem("draft", input.value);
+});
 
 // Zadanie domowe:
 
