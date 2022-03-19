@@ -1,5 +1,3 @@
-
-
 const todoList = {
   input: document.querySelector('#addTask'),
   button: document.querySelector('#addBtn'),
@@ -11,7 +9,7 @@ const todoList = {
     } else {
       // Add task
       this.taskList.innerHTML += `
-        <div class='task' id="task-${document.querySelectorAll('.task').length}">
+        <div class='task'>
           <div class="task__name">${text}</div>
           <input class="done" type="checkbox" />
           <button class="delete">
