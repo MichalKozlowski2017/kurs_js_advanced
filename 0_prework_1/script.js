@@ -6,7 +6,7 @@ const products = [
   
   function sumItems(products) {
     let output = 0;
-    products.map((el,i) => {
+    products.forEach((el,i) => {
         output += el.pricePerUnit * el.quantity
     })
     return output
