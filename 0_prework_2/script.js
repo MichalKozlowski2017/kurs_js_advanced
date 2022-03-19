@@ -1,24 +1,25 @@
-const input = document.querySelector('#addTask')
-const button = document.querySelector('#addBtn')
-const taskList = document.querySelector('#taskList')
+
 
 const todoList = {
-  
+  input: document.querySelector('#addTask'),
+  button: document.querySelector('#addBtn'),
+  taskList: document.querySelector('#taskList'),
+
   addTask(text) {
     if(text.length <= 2) {
       alert('Nazwa jest za krótka')
     } else {
-
-      taskList.innerHTML += `
+      // Add task
+      this.taskList.innerHTML += `
         <div class='task' id="task-${document.querySelectorAll('.task').length}">
           <div class="task__name">${text}</div>
-
           <input class="done" type="checkbox" />
           <button class="delete">
             Delete
           </button>
         </div>
       `
+
       // Check task
       document.querySelectorAll('.task').forEach((el,i) => {
         el.querySelector('.done').addEventListener('change', function() {
@@ -39,14 +40,14 @@ const todoList = {
         })
       })
       
-      input.value = "";
+      this.input.value = "";
     }
   },
 
 
   init() {
-    button.addEventListener('click', (e) => {
-      this.addTask(input.value)
+    this.button.addEventListener('click', (e) => {
+      this.addTask(this.input.value)
     })
   }
 }
