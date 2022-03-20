@@ -65,9 +65,9 @@ const input = document.querySelector("#todo-input");
 input.value = localStorage.getItem("draft");
 
 todos.forEach((todo) => {
-  list.innerHTML += `<li ${todo.isChecked ? 'class="completed"' : ""}>
-  <input type="checkbox" ${todo.isChecked ? "checked" : ""}>
-  ${todo.name}
+  list.innerHTML += `<li ${todo.checked ? 'class="completed"' : ""}>
+  <input class="check" type="checkbox" ${todo.checked ? "checked" : ""}>
+  <span>${todo.name}</span>
   <button type="button"> X </button>
   </li>`;
 });
@@ -75,26 +75,37 @@ todos.forEach((todo) => {
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  // dodawanie elementu listy
-  list.innerHTML += `<li>
-    <input type="checkbox">
-    ${input.value}
-    <button type="button"> X </button>
+  if (input.value.length <= 2) {
+    alert("Nazwa jest za krótka");
+  } else {
+    // dodawanie elementu listy
+    list.innerHTML += `<li>
+  <input class="check" type="checkbox">
+  <span>${input.value}</span>
+  <button type="button"> X </button>
   </li>`;
 
-  localStorage.setItem(
-    "todos",
-    JSON.stringify([
+    localStorage.setItem(
+      "todos",
+      JSON.stringify([
+        ...todos,
+        {
+          name: input.value,
+          checked: false,
+        },
+      ])
+    );
+
+    todos = [
       ...todos,
       {
         name: input.value,
         checked: false,
       },
-    ])
-  );
-
-  // czyszczenie pola formularza
-  input.value = "";
+    ];
+    // czyszczenie pola formularza
+    input.value = "";
+  }
 });
 
 list.addEventListener("click", (event) => {
@@ -104,6 +115,19 @@ list.addEventListener("click", (event) => {
 
     // na jego rodzicu (czyli li) manipuluje klasa completed, ktora w CSS zmienia styl wyswietlenia
     selectedInput.parentElement.classList.toggle("completed");
+
+    const tempTodos = [];
+    list.querySelectorAll("li").forEach((li) => {
+      tempTodos.push({
+        name: li.querySelector("span").innerHTML,
+        checked: li.querySelector(".check").checked,
+      });
+    });
+
+    todos = tempTodos;
+
+    localStorage.setItem("todos", []);
+    localStorage.setItem("todos", JSON.stringify([...tempTodos]));
   }
 
   if (event.target.tagName === "BUTTON") {
