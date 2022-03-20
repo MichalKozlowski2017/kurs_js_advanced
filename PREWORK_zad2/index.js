@@ -133,6 +133,10 @@ list.addEventListener("click", (event) => {
   if (event.target.tagName === "BUTTON") {
     const selectedButton = event.target;
     selectedButton.parentElement.remove();
+
+    const filteredTodos = todos.filter((todo) => {
+      todo.name !== event.target.previousElementSibling;
+    });
   }
 });
 
