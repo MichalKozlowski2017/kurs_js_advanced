@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import List from "../List/List";
 
+import styles from "./App.module.css";
+
 const TODO_ARRAY = [
   {
     name: "Wyniesc smieci",
@@ -38,6 +40,10 @@ const App = () => {
     setTodos(todos.filter((item) => item !== todos[index]));
   };
 
+  const handleChecked = (index) => {
+    console.log(index);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (inputValue.length <= 2) {
@@ -71,10 +77,10 @@ const App = () => {
           value={inputValue}
           placeholder="write todo"
         />
-        {isError ? <div className="error">Za mało znaków</div> : ""}
+        {isError ? <div className={styles.error}>Za mało znaków</div> : ""}
         <button type="submit">send todo</button>
       </form>
-      <List handleDelete={handleDelete} todoList={todos} />
+      <List handleChecked={handleChecked} handleDelete={handleDelete} todoList={todos} />
     </div>
   );
 };
