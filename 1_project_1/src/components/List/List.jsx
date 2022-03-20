@@ -1,10 +1,14 @@
 import React from "react";
 
-const List = (props) => {
+const List = ({ handleDelete, todoList }) => {
   return (
     <ul>
-      {props.todoList.map((todo, index) => (
-        <li key={index}>{todo.name}</li>
+      {todoList.map((todo, index) => (
+        <li key={index}>
+          {todo.name}
+          <input type="checkbox" className="done" />
+          <button onClick={() => handleDelete(index)}> X </button>
+        </li>
       ))}
     </ul>
   );
