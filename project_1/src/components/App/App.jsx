@@ -1,26 +1,26 @@
-import React, { useState, useEffect } from "react";
-import List from "../List/List";
+import React, { useState, useEffect } from 'react';
+import List from '../List/List';
 
-import styles from "./App.module.css";
+import styles from './App.module.css';
 
 const TODO_ARRAY = [
   {
-    name: "Wyniesc smieci",
+    name: 'Wyniesc smieci',
     checked: false,
   },
   {
-    name: "Smieci wyniesc",
+    name: 'Smieci wyniesc',
     checked: false,
   },
   {
-    name: "Wyrzucic smieci",
+    name: 'Wyrzucic smieci',
     checked: false,
   },
 ];
 
 const App = () => {
-  const [inputValue, setInputValue] = useState("");
-  const [storage, setStorage] = useState(JSON.parse(localStorage.getItem("todos")) ?? []);
+  const [inputValue, setInputValue] = useState('');
+  const [storage, setStorage] = useState(JSON.parse(localStorage.getItem('todos')) ?? []);
   const [todos, setTodos] = useState([]);
   const [isError, isSetError] = useState(false);
 
@@ -29,7 +29,7 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    setStorage(localStorage.setItem("todos", JSON.stringify([...todos])));
+    setStorage(localStorage.setItem('todos', JSON.stringify([...todos])));
   }, [todos]);
 
   const handleInputChange = (event) => {
@@ -53,18 +53,18 @@ const App = () => {
       setTodos([...todos, { name: inputValue, checked: false }]);
       setStorage(
         localStorage.setItem(
-          "todos",
+          'todos',
           JSON.stringify([
             ...todos,
             {
               name: inputValue,
               checked: false,
             },
-          ])
-        )
+          ]),
+        ),
       );
     }
-    setInputValue("");
+    setInputValue('');
   };
 
   return (
@@ -77,7 +77,7 @@ const App = () => {
           value={inputValue}
           placeholder="write todo"
         />
-        {isError ? <div className={styles.error}>Za mało znaków</div> : ""}
+        {isError ? <div className={styles.error}>Za mało znaków</div> : ''}
         <button type="submit">send todo</button>
       </form>
       <List handleChecked={handleChecked} handleDelete={handleDelete} todoList={todos} />
