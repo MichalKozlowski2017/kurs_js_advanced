@@ -1,22 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import List from '../List/List';
-
+import { v4 as uuidv4 } from 'uuid';
 import styles from './App.module.css';
-
-const TODO_ARRAY = [
-  {
-    name: 'Wyniesc smieci',
-    checked: false,
-  },
-  {
-    name: 'Smieci wyniesc',
-    checked: false,
-  },
-  {
-    name: 'Wyrzucic smieci',
-    checked: false,
-  },
-];
 
 const App = () => {
   const [inputValue, setInputValue] = useState('');
@@ -25,23 +10,32 @@ const App = () => {
   const [isError, isSetError] = useState(false);
 
   useEffect(() => {
-    setTodos(storage);
+    if (storage) {
+      setTodos(storage);
+    }
   }, []);
 
   useEffect(() => {
     setStorage(localStorage.setItem('todos', JSON.stringify([...todos])));
   }, [todos]);
 
+  const saveTodos = (todosToSave) => {
+    
+  }
+  
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
 
-  const handleDelete = (index) => {
-    setTodos(todos.filter((item) => item !== todos[index]));
+  const handleDelete = (todo) => {
+    setTodos(todos.filter((item) => item.id !== todo.id));
   };
 
-  const handleChecked = (index) => {
-    console.log(index);
+  const handleChecked = (e, id) => {
+    const indexOfCheckedElement = todos.findIndex(todo => todo.id === id)
+    const newTodos = [...todos]
+    newTodos[indexOfCheckedElement].checked = !newTodos[indexOfCheckedElement].checked
+    setTodos(newTodos)
   };
 
   const handleSubmit = (e) => {
@@ -50,19 +44,7 @@ const App = () => {
       isSetError(true);
     } else {
       isSetError(false);
-      setTodos([...todos, { name: inputValue, checked: false }]);
-      setStorage(
-        localStorage.setItem(
-          'todos',
-          JSON.stringify([
-            ...todos,
-            {
-              name: inputValue,
-              checked: false,
-            },
-          ]),
-        ),
-      );
+      setTodos([...todos, { id: uuidv4(), name: inputValue, checked: false }]);
     }
     setInputValue('');
   };
@@ -80,7 +62,7 @@ const App = () => {
         {isError ? <div className={styles.error}>Za mało znaków</div> : ''}
         <button type="submit">send todo</button>
       </form>
-      <List handleChecked={handleChecked} handleDelete={handleDelete} todoList={todos} />
+      <List onCheck={handleChecked} onRemove={handleDelete} todoList={todos} />
     </div>
   );
 };

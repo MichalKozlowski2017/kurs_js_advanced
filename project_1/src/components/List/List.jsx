@@ -1,21 +1,20 @@
-import React from "react";
+import React from 'react';
 
-import styles from "./List.module.css";
+import styles from './List.module.css';
 
-const List = ({ handleDelete, todoList }) => {
-  return (
-    <ul className={styles.list}>
-      {todoList.map((todo, index) => (
-        <li className={styles.list__element} key={index}>
-          <span>{todo.name}</span>
+const List = ({ onCheck, onRemove, todoList }) => {
+  if (todoList.length <= 0) return null;
+  return <ul className={styles.list}>
+      {todoList.map((todo) => (
+        <li id={todo.id} className={styles.list__element} key={todo.id}>
+          <span className={todo.checked ? styles.done : ''}>{todo.name}</span>
           <div>
-            <input type="checkbox" className="done" />
-            <button onClick={() => handleDelete(index)}> X </button>
+            <input onChange={(e) => onCheck(e, todo.id)} type="checkbox"  checked={todo.checked} />
+            <button onClick={() => onRemove(todo)}> X </button>
           </div>
         </li>
       ))}
-    </ul>
-  );
+    </ul>;
 };
 
 export default List;
