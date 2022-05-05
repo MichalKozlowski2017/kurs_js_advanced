@@ -5,16 +5,16 @@ import styles from './Chat.module.css';
 function Chat({ messages }) {
   return (
     <div id="chatWindow" className={styles.chatWindow}>
-      <div className={styles.chatInner}>
+      <ul className={styles.chatInner}>
         {messages.map((message) => (
-          <div className={`message ${styles.message}`} key={message.id}>
+          <li className={`message ${styles.message}`} key={message.id}>
             <div className={styles.message__content}>
-              <div className={styles.messageName}>{message.name}:</div>
+              <div className={styles.messageName}>{message.person}:</div>
               <div className={styles.messageMessage}>{message.message}</div>
             </div>
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }

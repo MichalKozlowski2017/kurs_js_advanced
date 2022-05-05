@@ -62,3 +62,7 @@ code {
 .invalid::placeholder {
 	color: #fff;
 }
+
+body {
+padding: 30px;
+}

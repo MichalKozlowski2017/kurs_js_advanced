@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import List from '../List/List';
 import { v4 as uuidv4 } from 'uuid';
+import List from '../List/List';
 import styles from './App.module.css';
 
 const App = () => {
@@ -20,9 +20,9 @@ const App = () => {
   }, [todos]);
 
   const saveTodos = (todosToSave) => {
-    
-  }
-  
+
+  };
+
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
@@ -32,10 +32,10 @@ const App = () => {
   };
 
   const handleChecked = (e, id) => {
-    const indexOfCheckedElement = todos.findIndex(todo => todo.id === id)
-    const newTodos = [...todos]
-    newTodos[indexOfCheckedElement].checked = !newTodos[indexOfCheckedElement].checked
-    setTodos(newTodos)
+    const indexOfCheckedElement = todos.findIndex((todo) => todo.id === id);
+    const newTodos = [...todos];
+    newTodos[indexOfCheckedElement].checked = !newTodos[indexOfCheckedElement].checked;
+    setTodos(newTodos);
   };
 
   const handleSubmit = (e) => {

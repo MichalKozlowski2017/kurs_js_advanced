@@ -1,0 +1,11 @@
+.main {
+  position: relative;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  background-color: blue;
+
+  @media (min-width: 800px) {
+    background-color: red;
+  }
+}

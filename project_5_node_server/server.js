@@ -10,7 +10,6 @@ const server = http.createServer((request,response) => {
   
   if(request.url === '/cars') {
     if(request.method === 'GET') {
-
      return fsp.readFile('./data/cars.json')
       .then(jsonFile => {
         response.writeHead(200, {contentType: "application/json"});
@@ -23,8 +22,6 @@ const server = http.createServer((request,response) => {
         response.write(JSON.stringify({message: error}))
         return response.end();
       })
-
-      
     }
   }
 
