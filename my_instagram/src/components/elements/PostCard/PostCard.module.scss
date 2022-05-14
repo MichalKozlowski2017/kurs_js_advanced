@@ -1,0 +1,58 @@
+@import '../../../styles/colors.scss';
+
+.card {
+  width: 100%;
+  border: 1px solid $color-border;
+  margin-bottom: 20px;
+}
+
+.header {
+  height: 60px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.profileWrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 20px;
+
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid $color-border;
+
+  img {
+    position: absolute;
+    height: auto;
+    width: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+  }
+}
+
+.profileName {
+  margin-left: 10px;
+}
+
+.profileImage {
+  width: 100%;
+  height: auto;
+}
+
+.contentWrapper {
+  padding: 20px;
+}
+
+.likes {
+  font-weight: bold;
+  margin-bottom: 15px;
+}
