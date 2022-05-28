@@ -2,9 +2,19 @@
   height: 40px;
   padding: 5px 10px;
   background: #eee;
+  position: fixed;
+  display: block;
+  top: 0;
+  height: 60px;
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+}
+
+.headerContainer {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 100%;
 }
 
 .logo {
@@ -22,4 +32,11 @@
 
 .navigation ul {
   list-style: none;
+  display: flex;
+  gap: 10px;
+}
+
+.headerAvatar {
+  height: 30px;
+  border-radius: 50%;
 }

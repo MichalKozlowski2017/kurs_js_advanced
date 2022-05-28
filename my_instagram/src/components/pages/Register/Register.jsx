@@ -13,16 +13,15 @@ function Register() {
   const handleEmail = (e) => {
     setEmail(e.target.value);
   };
-
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+  };
   const handleName = (e) => {
     setName(e.target.value);
   };
 
   const handleNick = (e) => {
     setNick(e.target.value);
-  };
-  const handlePassword = (e) => {
-    setPassword(e.target.value);
   };
 
   return (

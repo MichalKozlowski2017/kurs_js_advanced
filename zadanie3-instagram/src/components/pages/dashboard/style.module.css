@@ -1,0 +1,71 @@
+
+.wrapper {
+  padding-top: 60px;
+}
+.post {
+  max-width: 600px;
+  border: 1px solid #ccc;
+  list-style: none;
+  margin: 20px 0;
+  
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  padding: 20px 15px;
+}
+
+.author img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+.author div {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+
+.image {
+  width: 100%;
+  height: auto;
+  background-color: #000;
+}
+
+.info {
+  padding: 15px;
+}
+
+.info h4 {
+  margin-bottom: 10px;
+}
+
+.info svg {
+  width: 10px;
+  height: auto;
+}
+
+.likes {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 140px;
+  cursor: pointer;
+  padding: 5px;
+}
+.likes:disabled {
+  background-color: rgb(164, 178, 216);
+  color: #fff;
+}
+
+.likes:disabled img {
+  opacity: 0.4;
+}
+
+.likes img {
+  width: 30px;
+  height: auto;
+}
